@@ -49,7 +49,7 @@ function main() {
 
   // Get the storage location of u_ViewMatrix
   var u_ViewMatrix = gl.getUniformLocation(gl.program, 'u_ViewMatrix');
-  if(!u_ViewMatrix) { 
+  if (!u_ViewMatrix) {
     console.log('Failed to get the storage locations of u_ViewMatrix');
     return;
   }
@@ -57,7 +57,7 @@ function main() {
   // Create the view matrix
   var viewMatrix = new Matrix4();
   // Register the event handler to be called on key press
-  document.onkeydown = function(ev){ keydown(ev, gl, n, u_ViewMatrix, viewMatrix); };
+  document.onkeydown = function (ev) { keydown(ev, gl, n, u_ViewMatrix, viewMatrix); };
 
   draw(gl, n, u_ViewMatrix, viewMatrix);   // Draw
 }
@@ -65,22 +65,22 @@ function main() {
 function initVertexBuffers(gl) {
   var verticesColors = new Float32Array([
     // Vertex coordinates and color
-     0.0,  0.5,  -0.4,  0.4,  1.0,  0.4, // The back green one
-    -0.5, -0.5,  -0.4,  0.4,  1.0,  0.4,
-     0.5, -0.5,  -0.4,  1.0,  0.4,  0.4, 
-   
-     0.5,  0.4,  -0.2,  1.0,  0.4,  0.4, // The middle yellow one
-    -0.5,  0.4,  -0.2,  1.0,  1.0,  0.4,
-     0.0, -0.6,  -0.2,  1.0,  1.0,  0.4, 
+    0.0, 0.5, -0.4, 0.4, 1.0, 0.4, // The back green one
+    -0.5, -0.5, -0.4, 0.4, 1.0, 0.4,
+    0.5, -0.5, -0.4, 1.0, 0.4, 0.4,
 
-     0.0,  0.5,   0.0,  0.4,  0.4,  1.0,  // The front blue one 
-    -0.5, -0.5,   0.0,  0.4,  0.4,  1.0,
-     0.5, -0.5,   0.0,  1.0,  0.4,  0.4, 
+    0.5, 0.4, -0.2, 1.0, 0.4, 0.4, // The middle yellow one
+    -0.5, 0.4, -0.2, 1.0, 1.0, 0.4,
+    0.0, -0.6, -0.2, 1.0, 1.0, 0.4,
+
+    0.0, 0.5, 0.0, 0.4, 0.4, 1.0,  // The front blue one 
+    -0.5, -0.5, 0.0, 0.4, 0.4, 1.0,
+    0.5, -0.5, 0.0, 1.0, 0.4, 0.4,
   ]);
   var n = 9;
 
   // Create a buffer object
-  var vertexColorbuffer = gl.createBuffer();  
+  var vertexColorbuffer = gl.createBuffer();
   if (!vertexColorbuffer) {
     console.log('Failed to create the buffer object');
     return -1;
@@ -93,7 +93,7 @@ function initVertexBuffers(gl) {
   var FSIZE = verticesColors.BYTES_PER_ELEMENT;
   //Get the storage location of a_Position, assign and enable buffer
   var a_Position = gl.getAttribLocation(gl.program, 'a_Position');
-  if(a_Position < 0) {
+  if (a_Position < 0) {
     console.log('Failed to get the storage location of a_Position');
     return -1;
   }
@@ -103,7 +103,7 @@ function initVertexBuffers(gl) {
 
   // Get the storage location of a_Position, assign buffer and enable
   var a_Color = gl.getAttribLocation(gl.program, 'a_Color');
-  if(a_Color < 0) {
+  if (a_Color < 0) {
     console.log('Failed to get the storage location of a_Color');
     return -1;
   }
@@ -116,13 +116,13 @@ function initVertexBuffers(gl) {
 
 var g_eyeX = 0.20, g_eyeY = 0.25, g_eyeZ = 0.25; // Eye position
 function keydown(ev, gl, n, u_ViewMatrix, viewMatrix) {
-    if(ev.keyCode == 39) { // The right arrow key was pressed
-      g_eyeX += 0.01;
-    } else 
+  if (ev.keyCode == 39) { // The right arrow key was pressed
+    g_eyeX += 0.01;
+  } else
     if (ev.keyCode == 37) { // The left arrow key was pressed
       g_eyeX -= 0.01;
     } else { return; }
-    draw(gl, n, u_ViewMatrix, viewMatrix);    
+  draw(gl, n, u_ViewMatrix, viewMatrix);
 }
 
 function draw(gl, n, u_ViewMatrix, viewMatrix) {
