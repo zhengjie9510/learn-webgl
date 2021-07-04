@@ -46,16 +46,14 @@
         function setupShaders() {
             var vertexShaderSource = `
                 attribute vec3 aVertexPosition;
-                attribute vec3 aVertexPosition;
                 void main() { 
                     gl_Position = vec4(aVertexPosition, 1.0);     
-                }`
-
-            var fragmentShaderSource =
-                "precision mediump float;                    \n" +
-                "void main() {                               \n" +
-                "  gl_FragColor = vec4(1.0, 1.0, 1.0, 1.0);  \n" +
-                "}                                           \n";
+                }`;
+            var fragmentShaderSource = `
+                precision mediump float;
+                void main() {
+                    gl_FragColor = vec4(1.0,1.0,1.0,1.0);
+                }`;
 
             var vertexShader = loadShader(gl.VERTEX_SHADER, vertexShaderSource);
             var fragmentShader = loadShader(gl.FRAGMENT_SHADER, fragmentShaderSource);
